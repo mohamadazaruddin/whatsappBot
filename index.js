@@ -1,8 +1,17 @@
 const qrcode = require('qrcode-terminal');
-
-const { Client } = require('whatsapp-web.js');
+const express = require("express");
+const { Client } = require("whatsapp-web.js");
 const client = new Client();
+const app = express();
+const port = 9000;
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
+app.listen(port, () => {
+  console.log(`App is now working on port no : ${port}`);
+});
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
 });
